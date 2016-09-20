@@ -22,12 +22,10 @@ library(RPostgreSQL)
 # Filepath to the project directory
 baseDir <- "C:/KPONEIL/visualizationMaps/stanleySections"
 
-
 # Database credentials
 user <- "tom-bombadil"
 password <- "oneringtorulethemall"
-user <- "kyle"
-password <- "ironcurtainsalamander"
+
 
 # Define directories
 # ------------------
