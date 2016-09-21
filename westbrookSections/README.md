@@ -1,9 +1,13 @@
 Westbrook
 =========
-This repository contains the scripts and files specific to creating the 
-visualization map of the Westbrook sections. The scripts produce the event 
-tables used in the universal linear referencing process described in the parent 
-repository.
+The scripts and workflows specific to creating the visualization map of the 
+Westbrook sections. The scripts produce the event tables used in the universal 
+linear referencing process described in the parent repository. 
+
+Current datasets:
+ - Section locations
+ - Section widths
+ - Antenna locations
 <br><br>
 
 
@@ -19,7 +23,7 @@ flowlines. Flowlines are saved according to the directory structure outlined
 in the parent directory.
 
 In addition to the standard fields in the flowline layer, two additional 
-columns are added that coincide with the Westbrook tables:
+columns are added that coincide with the Westbrook database tables:
  - "conlfuence_river_meter" - The river meter of the downstream confluence of 
  each stream segment. This matches the same field in the "data_sites" table in 
  the "westbrook" database, with the correct values filled in for the West Brook 
@@ -35,10 +39,10 @@ columns are added that coincide with the Westbrook tables:
 ### Description
 The raw `data_sites` table in the "westbrook" database and the flowlines layer 
 are used to generate the event table associated with the midpoint of each 
-section midpoints relative to the stream segments. 
+section relative to the stream segments. 
 
 ### Execution 
-Open the `createSectionMidpoints.R` script and edit the variables in the "specify 
+Open the `createSectionMidpoints.R` script and edit the variables in the "Specify 
 inputs" section. The `baseDir` variable is the filepath to the project directory. 
 The `user` and `password` variables are your credentials for the "westbrook" 
 database on osensei. 
@@ -55,16 +59,16 @@ sample output for the event table for section midpoints.
 | 201480670	| 3	      | 1856.524244 | 	0    |
 | 201480754 | 1	      | 1686.330934 | 	0    |
 | 201480754	| 2	      | 1666.030934 | 	0    |
-Table 1: Sample midpoint event table
+Table 1: Example of the section midpoint event table
 <br><br>
 
 
 ## Section Widths Mapping
 ### Description
-The section widths are constantly changing with discharge. Event tables 
-representing the section boundaries are generated for each sample in order to 
-visualize the widths changing over time. Section widths are recorded during 
-each sample, beginning with sample 40.
+Stream width changes over time based on discharge. Event tables representing the 
+section boundaries are generated for each sample in order to visualize the 
+temporal variation in stream width. Section widths are recorded during each 
+sample, beginning with sample 40.
 
 A basic linear model is generated for each section to predict missing section 
 widths based on discharge. A comparison of the two existing flow records shows 
@@ -73,10 +77,10 @@ better predictor of section width. Sampling data for all sections in sample 42
 and the tributaries in sample 44 are omitted from the database. Width 
 predictions are not made for these sections.
 
-There is uncertainty in the record about which dates in the sample the wet 
+There is uncertainty in the record about which dates during the sample the wet 
 widths are taken on. In light of this knowledge, the discharge on the median 
 date of the sample is used to predict the widths. If it is desireable in the 
-future to switch to exact dates, it should be noted that the 
+future to switch to exact dates, it should also be noted that the 
 `data_tagged_captures` table contains different dates for identical sections. 
 
 Two width event tables, one positive and one negative offset, are created for 
@@ -85,7 +89,7 @@ each sample. The script uses the `data_sites`, `data_habitat`,
 database along with the flowlines layer to generate the tables.
 
 ### Execution 
-Open the `createSectionWidths.R` script and edit the variables in the "specify 
+Open the `createSectionWidths.R` script and edit the variables in the "Specify 
 inputs" section. The `baseDir` variable is the filepath to the project directory. 
 The `user` and `password` variables are your credentials for the "westbrook" 
 database on osensei.
@@ -111,17 +115,16 @@ Table 2: Sample widths event table
 Antennae locations are mapped to the flowlines based on existing deployment 
 information. Antennae have been added, moved, and removed over the history of 
 the sample, so locations are mapped to the flowlines based on their location 
-during each sample. 
+at the time of each sample. 
 
 The script uses the `antenna_deployment`, `data_seasonal_sampling`, and 
 `data_sites` tables in the "westbrook" database along with the flowlines layer 
 to generate a single output table for all of the antenna locations. If the 
-antenna deployment information is updated in the future, the script may need to 
-be updated as well. An example of this would be the inclusion of antenna from a 
-new drainage.
+antenna deployment information is updated in the future to include new drainages, 
+the script may need to be updated as well. 
 
 ### Execution 
-Open the `createAntennaLocations.R` script and edit the variables in the "specify 
+Open the `createAntennaLocations.R` script and edit the variables in the "Specify 
 inputs" section. The `baseDir` variable is the filepath to the project directory. 
 The `user` and `password` variables are your credentials for the "westbrook" 
 database on osensei.

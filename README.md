@@ -1,11 +1,11 @@
 Visualization Maps
 ==================
+The scripts and workflows generating the spatial data behind fish movement 
+visualizations. 
 
-# Description
-This repository contains the scripts and project specific directories for 
-creating visualization maps of stream sections used for sampling. Currently 
-the two projects are the Westbrook in Whately, MA and Stanley Brook on 
-Mt Desert Island, ME.
+Current projects:
+ - Westbrook - Whately, MA 
+ - Stanley Brook - Mt Desert Island, ME
 <br><br>
 
 
@@ -13,7 +13,7 @@ Mt Desert Island, ME.
 This repository relies on a common directory structure to reference different 
 files from different scripts. The base directory (`baseDir` variable in the 
 scripts) refers to the project-specific directory (e.g. 
-`C:\gis\vizMaps\westbrookSections`). Most directories are created in the 
+`C:\gis\vizMaps\westbrookSections`). Most directories are created by the 
 scripts. For example, the events directory accessed by the universal 
 `linearReferencing.py` script is created by the raw data processing scripts in 
 the individual project directories. The `../spatial/source.gdb` geodatabase, 
@@ -23,13 +23,22 @@ prior to running any of the scripts.
 
 
 # Workflow
-Raw data are processed within the project-specific sub-directories. This work 
-includes generating a spatial flowlines layer that is both representative of 
-the study area and functions within the linear referencing functions. Stream
-structure data is accessed to generate a common output format used to drive 
-the linear referencing process. Raw data processing is unique to each project.  
+The overall workflow is split into two sections. Site-specific processing is 
+completed within each individual project directory to generate a universally 
+formatted output. The output is then processed by the common linear referencing 
+process.
+
+The project-specific work involves generating a spatial flowlines layer that is 
+both representative of the study area and functions within the linear 
+referencing functions. Stream structure data is accessed to generate the common 
+output format (called an event table) used to drive the linear referencing 
+process. Typically, each time a new dataset is included (widths, sections, 
+antennae, etc.), a new script is written for the process. These 
+project-specific tasks are outlined within the individual project directories. 
+
 The "Linear Referencing" and "Finalize Products" sections below are universal 
-to all projects.
+to all projects. Output from the individual directories is used to drive the 
+spatial processing. 
 <br><br>
 
 
@@ -77,10 +86,10 @@ as in Table 1.
 | 1	 | 2       | 1134.560392 | -1.900166667 |
 | 2  | 51	     | 750.073078	 | -2.083333333 |
 | 2	 | 52	     | 710.073078	 | -1.848       |
-Table 1: Event table example
+Table 1: Basic event table sample
 
-Each event table may have duplicates in the "id" column, but should have unique 
-sections. This means that separate events tables are created for section markers 
+Each combination of "id" and "section" column values shoud be unique within a 
+table. This means that separate events tables are created for section markers 
 and width markers. Width events have two tables, one for each side of the 
 stream, typically denoted as postive and negative offsets. All events tables are 
 saved into the `..tables/events/` directory within the project base directory 

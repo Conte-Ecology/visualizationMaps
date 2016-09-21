@@ -1,9 +1,8 @@
 Stanley Brook
 =============
-This repository contains the scripts and files specific to creating the 
-visualization map of the Stanley Brook sections. The scripts produce the events 
-tables used in the universal linear referencing process described in the parent 
-repository.
+The scripts and workflows specific to creating the visualization map of the 
+Stanley Brook sample site. The scripts produce the event tables used in the 
+universal linear referencing process described in the parent repository.
 <br><br>
 
 
@@ -32,7 +31,7 @@ section midpoints relative to the stream segments. The "section_length" column
 is used in the calculation of relative position.
 
 ### Execution 
-Open the `createSectionMidpoints.R` script and edit the variables in the "specify 
+Open the `createSectionMidpoints.R` script and edit the variables in the "Specify 
 inputs" section. The `baseDir` variable is the filepath to the project directory. 
 The `user` and `password` variables are your credentials for the "westbrook" 
 database on osensei. 
@@ -40,7 +39,7 @@ database on osensei.
 ### Output
 The event table is used as input for the linear referencing process (outlined 
 in the parent repository) to create the section locations. Table 1 shows a 
-sample output for one of the event table for section midpoints.
+sample output for the event table of section midpoints.
 
 | id | section |  line_meas  | offset |
 |:--:| :-----: |  ---------  | ------ |
@@ -49,15 +48,15 @@ sample output for one of the event table for section midpoints.
 | 1	 | 3	     | 1856.524244 | 	0     |
 | 2  | 1	     | 1686.330934 | 	0     |
 | 2  | 2	     | 1666.030934 | 	0     |
-Table 1: Sample midpoint event table
+Table 1: Sample section midpoints event table
 <br><br>
 
 
 ## Section Widths Mapping
 ### Description
-The section widths are constantly changing with discharge. Event tables 
-representing the section boundaries are generated for each sample in order to 
-visualize the widths changing over time. Section widths are recorded during 
+Stream width changes over time based on discharge. Event tables representing 
+the section boundaries are generated for each sample in order to visualize 
+the temporal variation in stream width. Section widths are recorded during 
 each sample (1-15).
 
 Two width event tables, one positive and one negative offset, are created for 
@@ -66,7 +65,7 @@ each sample. The script uses the `data_sites`, `data_habitat`,
 database along with the flowlines layer to generate the tables.
 
 ### Execution 
-Open the `createSectionWidths.R` script and edit the variables in the "specify 
+Open the `createSectionWidths.R` script and edit the variables in the "Specify 
 inputs" section. The `baseDir` variable is the filepath to the project directory. 
 The `user` and `password` variables are your credentials for the "westbrook" 
 database on osensei.
@@ -83,7 +82,7 @@ sample output for one of the width event tables.
 | 2  | 36	     | 670.0730775 | 1           | -1.0725 |
 | 1	 | 1	     | 1170.578181 | 1           | -1.8675 |
 | 1  | 2	     | 1134.560391 | 1           | -1.6625 |
-Table 2: Sample widths event table
+Table 2: Sample section width event table
 <br><br>
 
 
