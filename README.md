@@ -13,7 +13,7 @@ Current projects:
 This repository relies on a common directory structure to reference different 
 files from different scripts. The base directory (`baseDir` variable in the 
 scripts) refers to the project-specific directory (e.g. 
-`C:\gis\vizMaps\westbrookSections`). Most directories are created by the 
+`C:/gis/vizMaps/westbrookSections`). Most directories are created by the 
 scripts. For example, the events directory accessed by the universal 
 `linearReferencing.py` script is created by the raw data processing scripts in 
 the individual project directories. The `../spatial/source.gdb` geodatabase, 
